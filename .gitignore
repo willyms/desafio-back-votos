@@ -1,5 +1,8 @@
 HELP.md
 target/
+.mvn
+mvnw
+mvnw.cmd
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -7,6 +10,7 @@ target/
 
 ### IDEA ###
 .idea
+.idea/*.xml
 .vscode
 *.iws
 *.iml
