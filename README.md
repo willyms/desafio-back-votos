@@ -60,8 +60,8 @@ Instruções de como instalar o Docker no [Ubuntu](https://docs.docker.com/engin
 
 Docker Compose já está incluído nos pacotes de instalação para Windows e Mac, portanto, apenas usuários do Ubuntu precisam seguir estas [instruções](https://docs.docker.com/compose/install/).
 
-### Arquitetura
-[imagens]
+### Arquitetura (ports and adapters)
+![image01](https://github.com/willyms/desafio-back-votos/blob/4ab88f901f731e576ab0aea2abd6558c7d262f7b/openapi/arquitetura-hexagonal.drawio.png)
 ### Executando
 Pode ser executado um único comando no terminal:
 ~~~
