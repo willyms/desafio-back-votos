@@ -10,6 +10,7 @@ import br.com.southsystem.application.port.secondary.ResultVoteSessionSecondaryR
 import br.com.southsystem.application.port.secondary.VoteSessionSecondaryRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -32,6 +33,24 @@ public class VoteSessionService implements VoteSessionPrimaryPort {
                     .findById(voteSessionId)
                     .switchIfEmpty(Mono.error(new VoteSessionNotFoundException()))
                     .flatMap(this::loadsResults);
+    }
+
+    @Override
+    public Mono<VoteSession> finishVoteSession(Long voteSessionId) {
+        return secondaryRepositoryPort
+                .findById(voteSessionId)
+                .switchIfEmpty(Mono.error(new VoteSessionNotFoundException()))
+                .map(voteSession ->  {
+                    voteSession.setEnabled(Boolean.FALSE);
+                    return voteSession;
+                })
+                .flatMap(secondaryRepositoryPort::update)
+                .flatMap(this::loadsResults);
+    }
+
+    @Override
+    public Flux<VoteSession> getAll() {
+        return secondaryRepositoryPort.getAll();
     }
 
     @Override
